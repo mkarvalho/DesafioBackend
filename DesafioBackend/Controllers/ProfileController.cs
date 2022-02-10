@@ -18,12 +18,7 @@ namespace DesafioBackend.Controllers
         {
             var allProfiles = await profileService.GetAll();
 
-            return Ok(new ResultViewModel
-            {
-                Message = null,
-                Success = true,
-                Data = allProfiles
-            });
+            return Ok(new ResultViewModel(allProfiles));
         }
 
         [HttpGet("{id:guid}")]
@@ -34,12 +29,13 @@ namespace DesafioBackend.Controllers
         {
             var profile = await profileService.GetById(id);
 
-            return Ok(new ResultViewModel
+            if(profile == null)
             {
-                Message = null,
-                Success = true,
-                Data = profile
-            });
+                return NotFound(new ResultViewModel(true, "Perfil não encontrado"));
+            }
+
+            return Ok(new ResultViewModel(profile));
+
         }
 
         [HttpPost]
@@ -50,12 +46,7 @@ namespace DesafioBackend.Controllers
         {
             var profileCreated = await profileService.Create(profileCreateDTO);
 
-            return Ok(new ResultViewModel
-            {
-                Message = null,
-                Success = true,
-                Data = profileCreated
-            });
+            return Ok(new ResultViewModel(profileCreated));
         }
 
 
@@ -65,9 +56,16 @@ namespace DesafioBackend.Controllers
             [FromServices] IProfileService profileService
             )
         {
+            var profileExists = await profileService.GetById(id);
+            if (profileExists == null)
+            {
+                return NotFound(new ResultViewModel(true, "Perfil não encontrado"));
+            }
+
             await profileService.Remove(id);
 
-            return Ok(new ResultViewModel { Message = "Perfil deletado", Success = true, Data = null });
+            return Ok(new ResultViewModel(false, "Perfil deletado"));
+
         }
 
         [HttpPut("{id:guid}")]
@@ -79,36 +77,20 @@ namespace DesafioBackend.Controllers
         {
             if(profileUpdateDTO.Id != id)
             {
-                return BadRequest(new ResultViewModel
-                {
-                    Message = "Id inválido",
-                    Success = false,
-                    Data = null
-                });
+                return BadRequest(new ResultViewModel(true, "Id inválido"));
             }
 
             var profileExists = await profileService.GetById(id);
             if (profileExists == null) 
             {
+                return NotFound(new ResultViewModel(true, "Perfil não encontrado"));
 
-                return NotFound(new ResultViewModel
-                {
-                    Message = "Perfil não encontrado",
-                    Success = false,
-                    Data = null
-                }) ;
             }
-
-            profileUpdateDTO.Modified = DateTime.Now;
             
             var profileUpdated = await profileService.Update(profileUpdateDTO);
 
-            return Ok(new ResultViewModel
-            {
-                Message = null,
-                Success = true,
-                Data = profileUpdated
-            });
+            return Ok(new ResultViewModel(profileUpdated));
+
         }
     }
 }
