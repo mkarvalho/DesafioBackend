@@ -1,6 +1,5 @@
-﻿using AutoMapper;
+﻿
 using DesafioBackend.DTO;
-using DesafioBackend.Entities;
 
 namespace DesafioBackend.Mappings
 {
@@ -9,6 +8,7 @@ namespace DesafioBackend.Mappings
         public MappingProfile()
         {
             CreateMap<Entities.Profile, ProfileDTO>().ReverseMap();
+            CreateMap<Entities.Profile, ProfileCreateDTO>().ReverseMap();
         }
     }
 }

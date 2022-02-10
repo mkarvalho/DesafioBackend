@@ -44,11 +44,11 @@ namespace DesafioBackend.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Create(
-            [FromBody] ProfileDTO profileDTO,
+            [FromBody] ProfileCreateDTO profileCreateDTO,
             [FromServices] IProfileService profileService
             )
         {
-            var profileCreated = await profileService.Create(profileDTO);
+            var profileCreated = await profileService.Create(profileCreateDTO);
 
             return Ok(new ResultViewModel
             {

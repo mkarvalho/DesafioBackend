@@ -35,9 +35,9 @@ namespace DesafioBackend.Services
             return result;
         }
 
-        public async Task<ProfileDTO> Create(ProfileDTO profileDTO)
+        public async Task<ProfileDTO> Create(ProfileCreateDTO profileCreateDTO)
         {
-            var profile = _mapper.Map<Entities.Profile>(profileDTO);
+            var profile = _mapper.Map<Entities.Profile>(profileCreateDTO);
             var profileCreated = await _profileRepository.Create(profile);
             return _mapper.Map<ProfileDTO>(profileCreated);
         }
