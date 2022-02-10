@@ -27,7 +27,7 @@ namespace DesafioBackend.Repositories
             conn.Open();
             var sql = "SELECT * FROM \"Profiles\"";
             var result = await conn.QueryAsync<Profile>(sql);
-            return result.ToList();
+            return result.OrderBy(x => x.Name).ToList();
         }
 
         public async Task<Profile> GetById(Guid id)
@@ -41,6 +41,8 @@ namespace DesafioBackend.Repositories
 
         public async Task<Profile> Create(Profile profile)
         {
+            profile.Created = DateTime.Now;
+            profile.Modified = profile.Created;
             _dbContext.Add(profile);
             await _dbContext.SaveChangesAsync();
             return profile;
@@ -58,6 +60,12 @@ namespace DesafioBackend.Repositories
 
         public async Task<Profile> Update(Profile profile)
         {
+            var profileBD = await GetById(profile.Id);
+
+            profile.Created = profileBD.Created;
+            profile.Modified = DateTime.Now;
+
+
             _dbContext.Entry(profile).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
             return profile;
