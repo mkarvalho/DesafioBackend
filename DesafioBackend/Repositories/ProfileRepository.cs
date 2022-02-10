@@ -48,7 +48,7 @@ namespace DesafioBackend.Repositories
 
         public async Task Remove(Guid id)
         {
-            var profile = GetById(id);
+            var profile = await GetById(id);
             if (profile != null)
             {
                 _dbContext.Remove(profile);

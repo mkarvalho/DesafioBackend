@@ -42,9 +42,9 @@ namespace DesafioBackend.Services
             return _mapper.Map<ProfileDTO>(profileCreated);
         }
 
-        public Task Remove(Guid id)
+        public async Task Remove(Guid id)
         {
-            throw new NotImplementedException();
+            await _profileRepository.Remove(id);
         }
 
         public Task<ProfileDTO> Update(ProfileDTO profile)

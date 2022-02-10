@@ -57,5 +57,22 @@ namespace DesafioBackend.Controllers
                 Data = profileCreated
             });
         }
+
+
+        [HttpDelete("{id:guid}")]
+        public async Task<IActionResult> Delete(
+            [FromRoute] Guid id,
+            [FromServices] IProfileService profileService
+            )
+        {
+            await profileService.Remove(id);
+
+            return StatusCode(204,Ok(new ResultViewModel
+            {
+                Message = null,
+                Success = true,
+                Data = null
+            }));
+        }
     }
 }
