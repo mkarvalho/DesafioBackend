@@ -67,12 +67,48 @@ namespace DesafioBackend.Controllers
         {
             await profileService.Remove(id);
 
-            return StatusCode(204,Ok(new ResultViewModel
+            return Ok(new ResultViewModel { Message = "Perfil deletado", Success = true, Data = null });
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Update(
+            [FromRoute] Guid id,
+            [FromBody] ProfileUpdateDTO profileUpdateDTO,
+            [FromServices] IProfileService profileService
+            )
+        {
+            if(profileUpdateDTO.Id != id)
+            {
+                return BadRequest(new ResultViewModel
+                {
+                    Message = "Id inválido",
+                    Success = false,
+                    Data = null
+                });
+            }
+
+            var profileExists = await profileService.GetById(id);
+            if (profileExists == null) 
+            {
+
+                return NotFound(new ResultViewModel
+                {
+                    Message = "Perfil não encontrado",
+                    Success = false,
+                    Data = null
+                }) ;
+            }
+
+            profileUpdateDTO.Modified = DateTime.Now;
+            
+            var profileUpdated = await profileService.Update(profileUpdateDTO);
+
+            return Ok(new ResultViewModel
             {
                 Message = null,
                 Success = true,
-                Data = null
-            }));
+                Data = profileUpdated
+            });
         }
     }
 }

@@ -11,7 +11,7 @@ namespace DesafioBackend.Services.Interfaces
         Task<IList<ProfileDTO>> GetAll();
         Task<ProfileDTO> GetById(Guid id);
         Task<ProfileDTO> Create(ProfileCreateDTO profileCreateDTO);
-        Task<ProfileDTO> Update(ProfileDTO profileDTO);
+        Task<ProfileDTO> Update(ProfileUpdateDTO profileUpdateDTO);
         Task Remove(Guid id);
     }
 }

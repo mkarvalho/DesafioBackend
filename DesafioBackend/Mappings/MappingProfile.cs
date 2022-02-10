@@ -9,6 +9,7 @@ namespace DesafioBackend.Mappings
         {
             CreateMap<Entities.Profile, ProfileDTO>().ReverseMap();
             CreateMap<Entities.Profile, ProfileCreateDTO>().ReverseMap();
+            CreateMap<Entities.Profile, ProfileUpdateDTO>().ReverseMap();
         }
     }
 }

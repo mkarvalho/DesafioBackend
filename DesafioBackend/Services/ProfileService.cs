@@ -47,9 +47,11 @@ namespace DesafioBackend.Services
             await _profileRepository.Remove(id);
         }
 
-        public Task<ProfileDTO> Update(ProfileDTO profile)
-        {
-            throw new NotImplementedException();
+        public async Task<ProfileDTO> Update(ProfileUpdateDTO profileUpdateDTO)
+        {   
+            var profile = _mapper.Map<Entities.Profile>(profileUpdateDTO);
+            var profileUpdate = await _profileRepository.Update(profile);
+            return _mapper.Map<ProfileDTO>(profileUpdate);
         }
     }
 }
