@@ -33,8 +33,12 @@ namespace DesafioBackend
             string dbConnectionString = Configuration.GetConnectionString("Database");
             services.AddSingleton<IDbConnection>(x => new NpgsqlConnection(dbConnectionString));
             services.AddDbContext<EFDbContext>(opt => opt.UseNpgsql(dbConnectionString));
+
             services.AddScoped<IProfileRepository, ProfileRepository>();
             services.AddScoped<IProfileService, ProfileService>();
+
+            services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<IUserService, UserService>();
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
