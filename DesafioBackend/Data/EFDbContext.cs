@@ -25,6 +25,9 @@ namespace DesafioBackend.Data
                 new Profile
                 { Name = "Operador" }
             );
+
+            modelBuilder.Entity<User>().Property(x => x.LastLogin).IsRequired(false);
+
             base.OnModelCreating(modelBuilder);
         }
 

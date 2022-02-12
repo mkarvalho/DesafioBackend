@@ -41,23 +41,23 @@ namespace DesafioBackend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("275203f2-c6f0-403c-89da-820d716dbe6c"),
-                            Created = new DateTime(2022, 2, 9, 21, 16, 22, 235, DateTimeKind.Local).AddTicks(9727),
-                            Modified = new DateTime(2022, 2, 9, 21, 16, 22, 237, DateTimeKind.Local).AddTicks(3601),
+                            Id = new Guid("cddf8ca6-8fa6-40ee-83a0-ad78aac72438"),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("1475659b-9ca7-4b35-923c-8de32248c961"),
-                            Created = new DateTime(2022, 2, 9, 21, 16, 22, 237, DateTimeKind.Local).AddTicks(4743),
-                            Modified = new DateTime(2022, 2, 9, 21, 16, 22, 237, DateTimeKind.Local).AddTicks(4748),
+                            Id = new Guid("87734ff8-79c4-4bf7-82a5-67dd1bcc8f01"),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Caixa"
                         },
                         new
                         {
-                            Id = new Guid("e5fc000a-c417-4fc8-8eb5-4dcee13ebe29"),
-                            Created = new DateTime(2022, 2, 9, 21, 16, 22, 237, DateTimeKind.Local).AddTicks(4751),
-                            Modified = new DateTime(2022, 2, 9, 21, 16, 22, 237, DateTimeKind.Local).AddTicks(4753),
+                            Id = new Guid("162919c0-e7cd-410a-90c2-cfab58871a40"),
+                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Name = "Operador"
                         });
                 });
@@ -74,7 +74,7 @@ namespace DesafioBackend.Migrations
                     b.Property<string>("Email")
                         .HasColumnType("text");
 
-                    b.Property<DateTime>("LastLogin")
+                    b.Property<DateTime?>("LastLogin")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<DateTime>("Modified")

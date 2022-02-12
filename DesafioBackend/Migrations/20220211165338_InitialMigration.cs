@@ -29,7 +29,7 @@ namespace DesafioBackend.Migrations
                     Name = table.Column<string>(type: "text", nullable: true),
                     Email = table.Column<string>(type: "text", nullable: true),
                     Password = table.Column<string>(type: "text", nullable: true),
-                    LastLogin = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    LastLogin = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
                     Created = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     Modified = table.Column<DateTime>(type: "timestamp without time zone", nullable: false)
                 },
@@ -67,9 +67,9 @@ namespace DesafioBackend.Migrations
                 columns: new[] { "Id", "Created", "Modified", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("275203f2-c6f0-403c-89da-820d716dbe6c"), new DateTime(2022, 2, 9, 21, 16, 22, 235, DateTimeKind.Local).AddTicks(9727), new DateTime(2022, 2, 9, 21, 16, 22, 237, DateTimeKind.Local).AddTicks(3601), "Admin" },
-                    { new Guid("1475659b-9ca7-4b35-923c-8de32248c961"), new DateTime(2022, 2, 9, 21, 16, 22, 237, DateTimeKind.Local).AddTicks(4743), new DateTime(2022, 2, 9, 21, 16, 22, 237, DateTimeKind.Local).AddTicks(4748), "Caixa" },
-                    { new Guid("e5fc000a-c417-4fc8-8eb5-4dcee13ebe29"), new DateTime(2022, 2, 9, 21, 16, 22, 237, DateTimeKind.Local).AddTicks(4751), new DateTime(2022, 2, 9, 21, 16, 22, 237, DateTimeKind.Local).AddTicks(4753), "Operador" }
+                    { new Guid("cddf8ca6-8fa6-40ee-83a0-ad78aac72438"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin" },
+                    { new Guid("87734ff8-79c4-4bf7-82a5-67dd1bcc8f01"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Caixa" },
+                    { new Guid("162919c0-e7cd-410a-90c2-cfab58871a40"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Operador" }
                 });
 
             migrationBuilder.CreateIndex(

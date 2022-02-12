@@ -42,9 +42,22 @@ namespace DesafioBackend.Repositories
         {
             user.Created = DateTime.Now;
             user.Modified = user.Created;
-            _dbContext.Add(user);
+            user.LastLogin = user.Created;
+            await CreateUserProfile(user);
+            await _dbContext.AddAsync(user);
             await _dbContext.SaveChangesAsync();
             return user;
+        }
+
+        public async Task CreateUserProfile(User user)
+        {
+            var profiles = new List<Profile>();
+            foreach (var profile in user.Profiles)
+            {
+                var profileExists = await _dbContext.Profiles.FirstOrDefaultAsync(x => x.Name == profile.Name);
+                profiles.Add(profileExists);
+            }
+            user.Profiles = profiles;
         }
 
         public async Task Remove(Guid id)
@@ -70,5 +83,8 @@ namespace DesafioBackend.Repositories
             await _dbContext.SaveChangesAsync();
             return user;
         }
+
+
+        
     }
 }

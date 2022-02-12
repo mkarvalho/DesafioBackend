@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 
 namespace DesafioBackend.Entities
 {
@@ -7,6 +8,7 @@ namespace DesafioBackend.Entities
     {
         public string Name { get; set; }
         
+        [JsonIgnore]
         public IList<User> Users { get; set; }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using DesafioBackend.DTO.User;
 using DesafioBackend.Entities;
 using DesafioBackend.Repositories.Interfaces;
 using DesafioBackend.Services.Interfaces;
@@ -19,10 +20,11 @@ namespace DesafioBackend.Services
             _mapper = mapper;
         }
  
-        public async Task<IList<User>> GetAll()
+        public async Task<IList<UserResultDTO>> GetAll()
         {
             var users = await _userRepository.GetAll();
-            return users;
+            var result = _mapper.Map<IList<UserResultDTO>>(users);
+            return result;
         }
 
         public async Task<User> GetById(Guid id)
@@ -30,9 +32,12 @@ namespace DesafioBackend.Services
             return await _userRepository.GetById(id);
         }
 
-        public async Task<User> Create(User user)
+        public async Task<UserResultDTO> Create(UserCreateDTO userCreateDTO)
         {
-            return await _userRepository.Create(user);
+            var user = _mapper.Map<User>(userCreateDTO);
+            var userCreated = await _userRepository.Create(user);
+            var result = _mapper.Map<UserResultDTO>(userCreated);
+            return result;
            
         }
         public async Task Remove(Guid id)
