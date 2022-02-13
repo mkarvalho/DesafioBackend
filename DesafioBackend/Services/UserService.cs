@@ -3,6 +3,7 @@ using DesafioBackend.DTO.User;
 using DesafioBackend.Entities;
 using DesafioBackend.Repositories.Interfaces;
 using DesafioBackend.Services.Interfaces;
+using SecureIdentity.Password;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -40,6 +41,9 @@ namespace DesafioBackend.Services
         public async Task<UserResultDTO> Create(UserCreateDTO userCreateDTO)
         {
             var user = _mapper.Map<User>(userCreateDTO);
+
+            user.Password = PasswordHasher.Hash(user.Password);
+
             var userCreated = await _userRepository.Create(user);
             var result = _mapper.Map<UserResultDTO>(userCreated);
             return result;
@@ -53,6 +57,9 @@ namespace DesafioBackend.Services
         public async Task<UserResultDTO> Update(UserUpdateDTO userUpdateDTO)
         {
             var user = _mapper.Map<User>(userUpdateDTO);
+
+            user.Password = PasswordHasher.Hash(user.Password);
+
             var userUpdated = await _userRepository.Update(user);
             return _mapper.Map<UserResultDTO>(userUpdated);
         }

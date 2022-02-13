@@ -96,7 +96,7 @@ namespace DesafioBackend.Repositories
 
         public async Task<User> GetByEmail(string email)
         {
-            var userEmail = await _dbContext.Users.SingleOrDefaultAsync(e => e.Email == email);
+            var userEmail = await _dbContext.Users.Include(p => p.Profiles).SingleOrDefaultAsync(e => e.Email == email);
             return userEmail;
         }
     }

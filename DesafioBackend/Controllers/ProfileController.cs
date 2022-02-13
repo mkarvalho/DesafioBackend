@@ -1,12 +1,14 @@
 ﻿using DesafioBackend.DTO;
 using DesafioBackend.Services.Interfaces;
 using DesafioBackend.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
 namespace DesafioBackend.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [ApiController]
     [Route("api/v1/profiles")]
     public class ProfileController : ControllerBase

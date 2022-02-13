@@ -1,12 +1,14 @@
 ﻿using DesafioBackend.DTO.User;
 using DesafioBackend.Services.Interfaces;
 using DesafioBackend.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
 
 namespace DesafioBackend.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/v1/users")]
     public class UserController : ControllerBase
@@ -37,6 +39,7 @@ namespace DesafioBackend.Controllers
             return Ok(new ResultViewModel(user));
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public async Task<IActionResult> Create(
             [FromBody] UserCreateDTO user,
@@ -48,6 +51,8 @@ namespace DesafioBackend.Controllers
             {
                 return BadRequest(new ResultViewModel(true, "Email já existente"));
             }
+
+            
 
             var userCreated = await userService.Create(user);
 
