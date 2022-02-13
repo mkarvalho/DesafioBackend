@@ -9,10 +9,9 @@ namespace DesafioBackend.Repositories.Interfaces
     {
         Task<List<User>> GetAll();
         Task<User> GetById(Guid id);
+        Task<User> GetByEmail(string email);
         Task<User> Create(User user);
-
         Task CreateUserProfile(User user);
-
         Task<User> Update(User user);
         Task Remove(Guid id);
     }

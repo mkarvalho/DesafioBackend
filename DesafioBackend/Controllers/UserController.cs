@@ -45,6 +45,12 @@ namespace DesafioBackend.Controllers
             [FromServices] IUserService userService
             )
         {
+            var checkEmail = await userService.GetByEmail(user.Email);
+            if(checkEmail != null)
+            {
+                return BadRequest(new ResultViewModel(true, "Email já existente"));
+            }
+
             var userCreated = await userService.Create(user);
 
             return Ok(new ResultViewModel(userCreated));
@@ -65,6 +71,31 @@ namespace DesafioBackend.Controllers
             await userService.Remove(id);
 
             return Ok(new ResultViewModel(false, "Perfil deletado"));
+
+        }
+
+        [HttpPut("{id:guid}")]
+        public async Task<IActionResult> Update(
+            [FromRoute] Guid id,
+            [FromBody] UserUpdateDTO userUpdateDTO,
+            [FromServices] IUserService userService
+            )
+        {
+
+            if (userUpdateDTO.Id != id)
+            {
+                return BadRequest(new ResultViewModel(true, "Id inválido"));
+            }
+
+            var checkEmail = await userService.GetByEmail(userUpdateDTO.Email);
+            if (checkEmail != null)
+            {
+                return BadRequest(new ResultViewModel(true, "Email já existente"));
+            }
+
+            var userUpdated = await userService.Update(userUpdateDTO);
+
+            return Ok(new ResultViewModel(userUpdated));
 
         }
     }

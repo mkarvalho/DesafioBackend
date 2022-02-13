@@ -22,20 +22,14 @@ namespace DesafioBackend.Repositories
 
         public async Task<List<User>> GetAll()
         {
-            using IDbConnection conn = DapperConnection;
-            conn.Open();
-            var sql = "SELECT * FROM \"Users\"";
-            var result = await conn.QueryAsync<User>(sql);
-            return result.OrderBy(x => x.Name).ToList();
+            return await _dbContext.Users.Include(p => p.Profiles).AsNoTracking().ToListAsync();
         }
 
         public async Task<User> GetById(Guid id)
         {
-            using IDbConnection conn = DapperConnection;
-            conn.Open();
-            var sql = $"SELECT * FROM \"Users\" WHERE \"Id\" = @id";
-            var result = await conn.QueryAsync<User>(sql, new { id });
-            return result.FirstOrDefault();
+
+            return await _dbContext.Users.Include(p => p.Profiles).AsNoTracking().SingleOrDefaultAsync(p => p.Id == id);
+            
         }
 
         public async Task<User> Create(User user)
@@ -72,19 +66,43 @@ namespace DesafioBackend.Repositories
 
         public async Task<User> Update(User user)
         {
-            var profileBD = await GetById(user.Id);
+            //var userDB = await GetById(user.Id);
+            var userDB = await _dbContext.Users.Include(p => p.Profiles).SingleOrDefaultAsync(p => p.Id == user.Id);
 
-            user.Created = profileBD.Created;
+            if(userDB == null)
+            {
+                return null;
+            }
+
+            user.Created = userDB.Created;
             user.Modified = DateTime.Now;
-            user.LastLogin = profileBD.LastLogin;
+            user.LastLogin = userDB.LastLogin;
 
 
-            _dbContext.Entry(user).State = EntityState.Modified;
+            _dbContext.Entry(userDB).CurrentValues.SetValues(user);
+
+            await UpdateUserProfile(user, userDB);
+
+            
             await _dbContext.SaveChangesAsync();
-            return user;
+            return userDB;
+        }
+        private async Task UpdateUserProfile(User user, User userConsulted)
+        {
+            userConsulted.Profiles.Clear();
+            foreach (var profile in user.Profiles)
+            {
+                var profileExists = await _dbContext.Profiles.FirstOrDefaultAsync(x => x.Name == profile.Name);
+                profileExists.Modified = profileExists.Modified;
+                profileExists.Created = profileExists.Created;
+                userConsulted.Profiles.Add(profileExists);
+            }
         }
 
-
-        
+        public async Task<User> GetByEmail(string email)
+        {
+            var userEmail = await _dbContext.Users.SingleOrDefaultAsync(e => e.Email == email);
+            return userEmail;
+        }
     }
 }

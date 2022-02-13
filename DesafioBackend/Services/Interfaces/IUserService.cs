@@ -10,8 +10,9 @@ namespace DesafioBackend.Services.Interfaces
     {
         Task<IList<UserResultDTO>> GetAll();
         Task<User> GetById(Guid id);
+        Task<User> GetByEmail(string email);
         Task<UserResultDTO> Create(UserCreateDTO userCreateDTO);
-        Task<User> Update(User user);
+        Task<UserResultDTO> Update(UserUpdateDTO userUpdateDTO);
         Task Remove(Guid id);
     }
 }

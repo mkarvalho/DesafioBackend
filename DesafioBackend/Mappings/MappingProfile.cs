@@ -14,7 +14,9 @@ namespace DesafioBackend.Mappings
 
             CreateMap<Entities.User, UserCreateDTO>().ReverseMap();
             CreateMap<Entities.User, UserResultDTO>().ReverseMap();
+            CreateMap<Entities.User, UserUpdateDTO>().ReverseMap();
             CreateMap<UserCreateDTO, UserResultDTO>().ReverseMap();
+            CreateMap<UserUpdateDTO, UserResultDTO>().ReverseMap();
         }
     }
 }
