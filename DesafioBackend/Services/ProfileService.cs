@@ -19,8 +19,6 @@ namespace DesafioBackend.Services
             _mapper = mapper;
         }
 
-
-
         public async Task<IList<ProfileDTO>> GetAll()
         {
             var profiles = await _profileRepository.GetAll();
@@ -48,7 +46,7 @@ namespace DesafioBackend.Services
         }
 
         public async Task<ProfileDTO> Update(ProfileUpdateDTO profileUpdateDTO)
-        {   
+        {
             var profile = _mapper.Map<Entities.Profile>(profileUpdateDTO);
             var profileUpdate = await _profileRepository.Update(profile);
             return _mapper.Map<ProfileDTO>(profileUpdate);

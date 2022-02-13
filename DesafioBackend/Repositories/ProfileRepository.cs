@@ -65,7 +65,6 @@ namespace DesafioBackend.Repositories
             profile.Created = profileBD.Created;
             profile.Modified = DateTime.Now;
 
-
             _dbContext.Entry(profile).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
             return profile;

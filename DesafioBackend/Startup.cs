@@ -13,7 +13,6 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using Npgsql;
 using System.Data;
-using System.Text.Json.Serialization;
 
 namespace DesafioBackend
 {

@@ -1,7 +1,5 @@
 ﻿using DesafioBackend.Entities;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using System.IO;
 
 namespace DesafioBackend.Data
 {
@@ -9,6 +7,7 @@ namespace DesafioBackend.Data
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Profile> Profiles { get; set; }
+
         public EFDbContext(DbContextOptions options) : base(options)
         {
         }
@@ -30,6 +29,5 @@ namespace DesafioBackend.Data
 
             base.OnModelCreating(modelBuilder);
         }
-
     }
 }

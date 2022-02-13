@@ -7,6 +7,7 @@ namespace DesafioBackend.Data
     public class DapperDbContext
     {
         private readonly string _connectionString = string.Empty;
+
         public DapperDbContext(IConfiguration configuration)
         {
             _connectionString = configuration.GetConnectionString("Database");

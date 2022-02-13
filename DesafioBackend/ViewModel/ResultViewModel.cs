@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace DesafioBackend.ViewModel
+﻿namespace DesafioBackend.ViewModel
 {
     public class ResultViewModel
     {
@@ -13,10 +11,10 @@ namespace DesafioBackend.ViewModel
         {
             Error = error;
             Mensagem = mensagem;
-        }      
+        }
 
-        public dynamic Data { get;  set; }
-        public string Mensagem { get;  set; } 
-        public bool? Error { get;  set; }
+        public dynamic Data { get; set; }
+        public string Mensagem { get; set; }
+        public bool? Error { get; set; }
     }
 }

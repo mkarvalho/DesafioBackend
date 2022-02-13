@@ -12,9 +12,7 @@ namespace DesafioBackend.DTO.User
         public string Password { get; set; }
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
-        public DateTime LastLogin { get; set; } 
+        public DateTime LastLogin { get; set; }
         public IList<Profile> Profiles { get; set; }
-
-
     }
 }

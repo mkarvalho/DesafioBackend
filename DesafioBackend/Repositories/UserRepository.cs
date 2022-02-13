@@ -1,13 +1,10 @@
-﻿using Dapper;
-using DesafioBackend.Data;
+﻿using DesafioBackend.Data;
 using DesafioBackend.Entities;
 using DesafioBackend.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
-using System.Data;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace DesafioBackend.Repositories
@@ -15,6 +12,7 @@ namespace DesafioBackend.Repositories
     public class UserRepository : DapperDbContext, IUserRepository
     {
         private readonly EFDbContext _dbContext;
+
         public UserRepository(IConfiguration configuration, EFDbContext dbContext) : base(configuration)
         {
             _dbContext = dbContext;
@@ -27,9 +25,7 @@ namespace DesafioBackend.Repositories
 
         public async Task<User> GetById(Guid id)
         {
-
             return await _dbContext.Users.Include(p => p.Profiles).AsNoTracking().SingleOrDefaultAsync(p => p.Id == id);
-            
         }
 
         public async Task<User> Create(User user)
@@ -69,7 +65,7 @@ namespace DesafioBackend.Repositories
             //var userDB = await GetById(user.Id);
             var userDB = await _dbContext.Users.Include(p => p.Profiles).SingleOrDefaultAsync(p => p.Id == user.Id);
 
-            if(userDB == null)
+            if (userDB == null)
             {
                 return null;
             }
@@ -78,15 +74,14 @@ namespace DesafioBackend.Repositories
             user.Modified = DateTime.Now;
             user.LastLogin = userDB.LastLogin;
 
-
             _dbContext.Entry(userDB).CurrentValues.SetValues(user);
 
             await UpdateUserProfile(user, userDB);
 
-            
             await _dbContext.SaveChangesAsync();
             return userDB;
         }
+
         private async Task UpdateUserProfile(User user, User userConsulted)
         {
             userConsulted.Profiles.Clear();

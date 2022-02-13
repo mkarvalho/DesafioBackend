@@ -1,5 +1,4 @@
-﻿
-using DesafioBackend.DTO;
+﻿using DesafioBackend.DTO;
 using DesafioBackend.DTO.User;
 
 namespace DesafioBackend.Mappings

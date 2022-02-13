@@ -19,7 +19,7 @@ namespace DesafioBackend.Services
             _userRepository = userRepository;
             _mapper = mapper;
         }
- 
+
         public async Task<IList<UserResultDTO>> GetAll()
         {
             var users = await _userRepository.GetAll();
@@ -28,7 +28,7 @@ namespace DesafioBackend.Services
         }
 
         public async Task<User> GetById(Guid id)
-        { 
+        {
             return await _userRepository.GetById(id);
         }
 
@@ -43,8 +43,8 @@ namespace DesafioBackend.Services
             var userCreated = await _userRepository.Create(user);
             var result = _mapper.Map<UserResultDTO>(userCreated);
             return result;
-           
         }
+
         public async Task Remove(Guid id)
         {
             await _userRepository.Remove(id);
@@ -56,7 +56,5 @@ namespace DesafioBackend.Services
             var userUpdated = await _userRepository.Update(user);
             return _mapper.Map<UserResultDTO>(userUpdated);
         }
-
-        
     }
 }

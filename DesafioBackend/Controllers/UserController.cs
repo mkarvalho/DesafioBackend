@@ -1,8 +1,6 @@
 ﻿using DesafioBackend.DTO.User;
-using DesafioBackend.Entities;
 using DesafioBackend.Services.Interfaces;
 using DesafioBackend.ViewModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -46,7 +44,7 @@ namespace DesafioBackend.Controllers
             )
         {
             var checkEmail = await userService.GetByEmail(user.Email);
-            if(checkEmail != null)
+            if (checkEmail != null)
             {
                 return BadRequest(new ResultViewModel(true, "Email já existente"));
             }
@@ -71,7 +69,6 @@ namespace DesafioBackend.Controllers
             await userService.Remove(id);
 
             return Ok(new ResultViewModel(false, "Perfil deletado"));
-
         }
 
         [HttpPut("{id:guid}")]
@@ -81,7 +78,6 @@ namespace DesafioBackend.Controllers
             [FromServices] IUserService userService
             )
         {
-
             if (userUpdateDTO.Id != id)
             {
                 return BadRequest(new ResultViewModel(true, "Id inválido"));
@@ -96,7 +92,6 @@ namespace DesafioBackend.Controllers
             var userUpdated = await userService.Update(userUpdateDTO);
 
             return Ok(new ResultViewModel(userUpdated));
-
         }
     }
 }

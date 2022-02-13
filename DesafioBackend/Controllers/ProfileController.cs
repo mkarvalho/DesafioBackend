@@ -29,13 +29,12 @@ namespace DesafioBackend.Controllers
         {
             var profile = await profileService.GetById(id);
 
-            if(profile == null)
+            if (profile == null)
             {
                 return NotFound(new ResultViewModel(true, "Perfil não encontrado"));
             }
 
             return Ok(new ResultViewModel(profile));
-
         }
 
         [HttpPost]
@@ -48,7 +47,6 @@ namespace DesafioBackend.Controllers
 
             return Ok(new ResultViewModel(profileCreated));
         }
-
 
         [HttpDelete("{id:guid}")]
         public async Task<IActionResult> Delete(
@@ -65,7 +63,6 @@ namespace DesafioBackend.Controllers
             await profileService.Remove(id);
 
             return Ok(new ResultViewModel(false, "Perfil deletado"));
-
         }
 
         [HttpPut("{id:guid}")]
@@ -75,22 +72,20 @@ namespace DesafioBackend.Controllers
             [FromServices] IProfileService profileService
             )
         {
-            if(profileUpdateDTO.Id != id)
+            if (profileUpdateDTO.Id != id)
             {
                 return BadRequest(new ResultViewModel(true, "Id inválido"));
             }
 
             var profileExists = await profileService.GetById(id);
-            if (profileExists == null) 
+            if (profileExists == null)
             {
                 return NotFound(new ResultViewModel(true, "Perfil não encontrado"));
-
             }
-            
+
             var profileUpdated = await profileService.Update(profileUpdateDTO);
 
             return Ok(new ResultViewModel(profileUpdated));
-
         }
     }
 }

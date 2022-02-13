@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace DesafioBackend.DTO
+﻿namespace DesafioBackend.DTO
 {
     public class ProfileCreateDTO
     {
