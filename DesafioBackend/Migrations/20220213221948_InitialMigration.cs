@@ -1,5 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DesafioBackend.Migrations
 {
@@ -67,9 +67,9 @@ namespace DesafioBackend.Migrations
                 columns: new[] { "Id", "Created", "Modified", "Name" },
                 values: new object[,]
                 {
-                    { new Guid("cddf8ca6-8fa6-40ee-83a0-ad78aac72438"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Admin" },
-                    { new Guid("87734ff8-79c4-4bf7-82a5-67dd1bcc8f01"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Caixa" },
-                    { new Guid("162919c0-e7cd-410a-90c2-cfab58871a40"), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), "Operador" }
+                    { new Guid("358b0e4d-3de5-4f72-9b54-1ce3e96cd749"), new DateTime(2022, 2, 13, 19, 19, 47, 559, DateTimeKind.Local).AddTicks(4454), new DateTime(2022, 2, 13, 19, 19, 47, 560, DateTimeKind.Local).AddTicks(7332), "Admin" },
+                    { new Guid("da27ffa7-c483-4e6d-b6f9-3ce15edf9ac1"), new DateTime(2022, 2, 13, 19, 19, 47, 560, DateTimeKind.Local).AddTicks(7850), new DateTime(2022, 2, 13, 19, 19, 47, 560, DateTimeKind.Local).AddTicks(7857), "Caixa" },
+                    { new Guid("cc9d6a68-8d33-45f8-844d-9e1209af0041"), new DateTime(2022, 2, 13, 19, 19, 47, 560, DateTimeKind.Local).AddTicks(7860), new DateTime(2022, 2, 13, 19, 19, 47, 560, DateTimeKind.Local).AddTicks(7861), "Operador" }
                 });
 
             migrationBuilder.CreateIndex(

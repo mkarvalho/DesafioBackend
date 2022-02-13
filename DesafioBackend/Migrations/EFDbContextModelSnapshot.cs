@@ -41,23 +41,23 @@ namespace DesafioBackend.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("cddf8ca6-8fa6-40ee-83a0-ad78aac72438"),
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("358b0e4d-3de5-4f72-9b54-1ce3e96cd749"),
+                            Created = new DateTime(2022, 2, 13, 19, 19, 47, 559, DateTimeKind.Local).AddTicks(4454),
+                            Modified = new DateTime(2022, 2, 13, 19, 19, 47, 560, DateTimeKind.Local).AddTicks(7332),
                             Name = "Admin"
                         },
                         new
                         {
-                            Id = new Guid("87734ff8-79c4-4bf7-82a5-67dd1bcc8f01"),
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("da27ffa7-c483-4e6d-b6f9-3ce15edf9ac1"),
+                            Created = new DateTime(2022, 2, 13, 19, 19, 47, 560, DateTimeKind.Local).AddTicks(7850),
+                            Modified = new DateTime(2022, 2, 13, 19, 19, 47, 560, DateTimeKind.Local).AddTicks(7857),
                             Name = "Caixa"
                         },
                         new
                         {
-                            Id = new Guid("162919c0-e7cd-410a-90c2-cfab58871a40"),
-                            Created = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Modified = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Id = new Guid("cc9d6a68-8d33-45f8-844d-9e1209af0041"),
+                            Created = new DateTime(2022, 2, 13, 19, 19, 47, 560, DateTimeKind.Local).AddTicks(7860),
+                            Modified = new DateTime(2022, 2, 13, 19, 19, 47, 560, DateTimeKind.Local).AddTicks(7861),
                             Name = "Operador"
                         });
                 });

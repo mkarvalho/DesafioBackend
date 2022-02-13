@@ -1,5 +1,6 @@
 ﻿using DesafioBackend.Entities;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace DesafioBackend.Data
 {
@@ -18,11 +19,11 @@ namespace DesafioBackend.Data
                 .Entity<Profile>()
                 .HasData(
                 new Profile
-                { Name = "Admin" },
+                { Name = "Admin", Created = DateTime.Now, Modified = DateTime.Now },
                 new Profile
-                { Name = "Caixa" },
+                { Name = "Caixa", Created = DateTime.Now, Modified = DateTime.Now },
                 new Profile
-                { Name = "Operador" }
+                { Name = "Operador", Created = DateTime.Now, Modified = DateTime.Now }
             );
 
             modelBuilder.Entity<User>().Property(x => x.LastLogin).IsRequired(false);
