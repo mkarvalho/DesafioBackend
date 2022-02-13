@@ -62,7 +62,6 @@ namespace DesafioBackend.Repositories
 
         public async Task<User> Update(User user)
         {
-            //var userDB = await GetById(user.Id);
             var userDB = await _dbContext.Users.Include(p => p.Profiles).SingleOrDefaultAsync(p => p.Id == user.Id);
 
             if (userDB == null)
